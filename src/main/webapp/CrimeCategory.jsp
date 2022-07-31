@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Delete Criminal</title>
+  <title>View Criminal Here</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -57,8 +57,8 @@
         <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="admin.html">Admin</a></li>
-            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -92,10 +92,9 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Delete Criminals Page</h2>
-              <p>Guilty Until Proven innocent....</p>
+              <h2>Check for  Crime Category</h2>
               
-              <form id="formb">
+                <form id="formb">
     <input id="search" type="text" name="search" placeholder="Search Query here....">
     
     </form>
@@ -127,72 +126,63 @@
     resize: none;
     outline: none;
     }
-    
-    P{
-    text-align: center;
+    p{
+     text-align: center;
 line-height: 25px;
     
     }
    
     </style>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>
-             <%
- Connection con;
+          </div>
+        </div>
+      </div>
+      <nav>
+        
+      </nav>
+    </div><!-- End Breadcrumbs -->
+    <br>
+    <% 
+  Connection con;
  PreparedStatement psd;
  ResultSet rs;
- Class.forName("com.mysql.cj.jdbc.Driver");
-	con = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+   
     try{
- 	  
-    	  
+ 	   Class.forName("com.mysql.cj.jdbc.Driver");
+		con = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+	String Query = request.getParameter("search");
+	String q="select * from crimecategory where crime_committed in ('"+Query+"') or ipc_sections in ('"+Query+"')  or types in ('"+Query+"')";
+	psd=con.prepareStatement(q); 	   
+	   rs=psd.executeQuery();
+	 
+	   while(rs.next())
+	   {
+		   %>
+		  <hr>
+		 <h4><strong>Criminal Records</strong></h4>
+       <br>
+       Crime Category:-<%out.print(rs.getString("crime_committed"));%>
+              <br>
+ 
+  <br>
+IPC Sections :-<%out.print(rs.getString("ipc_sections"));%>
+<br> 
+Types:-<%out.print(rs.getString("types"));%>
+<br>
 
-    	 	String Query = request.getParameter("search");
-    	 	String q="select * from criminals where criminal_name in ('"+Query+"') or phone in ('"+Query+"') or cid in ('"+Query+"') or phone in ('"+Query+"') or arrested_by in ('"+Query+"')or crime_committed in ('"+Query+"') or age in ('"+Query+"') or weight in ('"+Query+"') or eyecolor in ('"+Query+"') or uidm in ('"+Query+"') or status_aftercrime in ('"+Query+"') or judicial_status in ('"+Query+"') or address in ('"+Query+"') or comp_id in ('"+Query+"') or pid in ('"+Query+"')";
-    	 	psd=con.prepareStatement(q); 	   
-    	 	   rs=psd.executeQuery();
-    	 	   while(rs.next())
-    	 	   {
-    	 		   %>
-    	 		  
-    	 		 <p><strong>Criminal Records</strong>
-    	        <br>
-    	        Name:-<%out.print(rs.getString("criminal_name"));%>
-    	               <br>
-    	   Criminal id:-<%out.print(rs.getString("cid"));%>
-    	   <br>
-    	 phone:-<%out.print(rs.getString("phone"));%>
-    	 <br> 
-    	 crime committed:-<%out.print(rs.getString("crime_committed"));%>
-    	 <br>
-    	 Arrested By:-<%out.print(rs.getString("arrested_by"));%>
-    	 <br>
-    	 Age:-<%out.print(rs.getString("age"));%>
-    	 <br>
-    	 Weight:-<%out.print(rs.getString("weight"));%>
-    	 <br>
-    	 Eye color:-<%out.print(rs.getString("eyecolor"));%>
-    	 <br>
 
-    	 Unique Identification:-<%out.print(rs.getString("uidm"));%>
-    	 <br>
-    	 Status AfterCrime:-<%out.print(rs.getString("status_aftercrime"));%>
-    	 <br>
-    	 Judicial Status:-<%out.print(rs.getString("judicial_status"));%>
-    	 <br>
-    	 Address:-<%out.print(rs.getString("address"));%>
-    	 <br>
-    	 PID:-<%out.print(rs.getString("pid"));%>
+<hr>
+</p>
 
-    	 </p>
-
-    	 	 
 		   
 		   
-	   <% }
+		   
+	   <% 
+	   }
+	   
+	 
+	   
+	   
     }
     catch(Exception e)
     {
@@ -202,87 +192,60 @@ line-height: 25px;
     
     
     %>
-            <form data-aos="fade-up" style="margin-left:auto;margin-right:auto;">
-            <br>
-            <h3>Enter the Criminal Id to be Removed:</h3>
-            <br>
-            <input style="width:400px;height:65px;border-radius:10px" type="text" name="cids" placeholder="Enter the Criminal id here">
-            <br>
-            <input type="submit" class="buttoncd" value="Delete"/>
-            </form> 
-   
-   
-  </main><!-- End #main -->
-<br>
-<style>
-.buttonholder{
-display: flex;
-justify-content: center;
-}
-.buttoncd{
-background-color:var(--color-secondary);
-color:white;
-margin-top:10px;
-margin-right:30px;
-margin-left:25px;
-border-radius:20px;
-padding: 33px 20px;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.buttoncd span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
+    
+    
+    
+ 
+    <table style="margin-left:auto;margin-right:auto;">
+ 
+,<thead>
+    <tr style="border:2px solid;text-align:center;">
+ 
 
-.buttoncd span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.buttoncd:hover span {
-  padding-right: 25px;
-}
-
-.buttoncd:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-
-</style>  
+  <th>Crime Category</th>
+  <th>IPC Sections</th>
+  <th>Types</th>
   
-<%
-try{
-Statement st=con.createStatement();
-String Query = request.getParameter("cids");
-String q="delete from criminals where cid="+Query+"";
-int i=st.executeUpdate(q);
-if(i>0)  
-{
-	   %>
-	    <script>alert("data altered successfully!!")</script>
-	
-	   <%
-}
-	   else if(i<0)
-	   {
-		   %>
-		  <script>alert("The given Criminal with id given does not exist")</script>
-		   <%
-	   }
-}
-catch(Exception e)
-    {
-	e.printStackTrace();
-    }
+</tr>
+</thead>
+<tbody>
+  
+  </thead>
+ 
+  <tr>
+   <% 
+  try{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		//change name of db stored
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+		
+		Statement statement=connection.createStatement();
 
-%>
+	  String sql="select  * from crimecategory";
+	rs=statement.executeQuery(sql);
+	
+	  while(rs.next())
+	  {
+		  
+  %>
+
+
+<td><%out.print(rs.getString("crime_committed"));%></td>
+<td><%out.print(rs.getString("ipc_sections"));%></td>
+<td><%out.print(rs.getString("types"));%></td>
+  </tr>
+  <% }
+	 
+   }
+   
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+	  %>
+</tbody>
+  </table>
+
   </main><!-- End #main -->
 <br>
 <br>

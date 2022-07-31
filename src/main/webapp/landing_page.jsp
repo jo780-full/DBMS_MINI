@@ -28,6 +28,8 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
@@ -58,6 +60,7 @@
             <ul>
               <li><a href="admin.html">Admin</a></li>
               <li><a href="offloging.jsp">Officer</a></li>
+              <li><a href="CrimeCategory.jsp">Crime Type</a></li>
               </ul>
           <li><a href="report.jsp">Complaint</a></li>
        
@@ -130,15 +133,7 @@ margin-top: 100px;
   
   </style>
   <main id="main">
-<p> 
- We strongly believe this is the solution to your problem .
-<br>
-
-We Observe, compare, and analyze crime risk for all your locations.
-<br>
-Take a technologically advanced approach to mitigating risk with expert-level crime forecasting.
-
-</p>   
+ 
 
 <%
             Connection con;
@@ -216,7 +211,118 @@ Station Name:-<%out.print(rs.getString("station_name"));%></p>
         	   
         		   %>
         			
+<p> 
+ We strongly believe this is the solution to your problem .
+<br>
 
+We Observe, compare, and analyze crime risk for all your locations.
+<br>
+Take a technologically advanced approach to mitigating risk with expert-level crime forecasting.
+
+</p>  
+<hr>
+<div class="card" style="width:80%;margin-left:5%;">
+<br>
+    <h5 class="card-title" style="margin-left:5%;margin-top:3%">The Message from the New Commissioner</h5>
+    <hr>
+    
+   
+  <div class="card-body" >
+   
+    <iframe width="500" height="315"
+src="https://www.youtube.com/embed/y1ax0NX59Xk">
+</iframe> 
+   
+  </div>
+  <div class="card-para" style="position:relative;width: 100%;
+    height:10%;display:flex;justify-content:center;
+    "> 
+ 
+    <p>
+     <a href="#" class="fa fa-instagram"></a>
+      <a href="#" class="fa fa-google"></a> 
+    <a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-twitter"></a>
+    </p>
+  
+    
+    </div>
+  <button class="buttoncd""><a href="https://bengaluruurban.nic.in/en/department/police-department/" style="color:white;"><span>Visit Website</span></a></button>
+  <br>
+</div>
+<style> 
+
+.buttonholder{
+display: flex;
+justify-content: center;
+}
+.buttoncd{
+background-color:var(--color-secondary);
+color:white;
+margin-top:10px;
+margin-right:30px;
+margin-left:25px;
+
+margin-bottom:2%;
+border-radius:20px;
+padding: 33px 20px;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.buttoncd span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttoncd span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttoncd:hover span {
+  padding-right: 25px;
+}
+
+.buttoncd:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+.card-body 
+{
+ 
+
+   display: flex;
+  justify-content: space-between;
+  margin-left:30%;
+  height: 315px;
+  padding:0%;
+  width: 500px;
+  background: #f2f2f2;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+
+}
+</style>
 </main><!-- End #main -->
   <!-- ======= Footer ======= -->
   <br>

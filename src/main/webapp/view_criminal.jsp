@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.sql.*"%>
 
 <!DOCTYPE html>
@@ -58,6 +58,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -67,22 +68,6 @@
 </header><!-- End Header -->
 <!-- End Header -->
 
-<style>
-  th{
-  border:1px solid black;
-  padding:10dp;
-  text-align:centre;
-  
-  }
-  td{
-  border:1px solid black;
-  padding:10dp;
-  text-align:centre;
-  
-  }
-  
-  
-  </style>
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -141,6 +126,7 @@ line-height: 25px;
       </nav>
     </div><!-- End Breadcrumbs -->
     <br>
+    
     <% 
   Connection con;
  PreparedStatement psd;
@@ -162,8 +148,7 @@ line-height: 25px;
        <br>
        Name:-<%out.print(rs.getString("criminal_name"));%>
               <br>
- 
-  <br>
+
 phone:-<%out.print(rs.getString("phone"));%>
 <br> 
 crime committed:-<%out.print(rs.getString("crime_committed"));%>
@@ -209,32 +194,47 @@ Address:-<%out.print(rs.getString("address"));%>
     %>
     
     
+ <style> 
     
- 
-    <table style="margin-left:auto;margin-right:auto;">
- 
-,<thead>
-    <tr style="border:2px solid;text-align:center;">
- 
+      
+    
+    .container1{
+    
+  width:30%;
+  height:auto;
+  background-color:white;
 
-  <th>Name</th>
-  <th>Phone</th>
-  <th>Arresting Officer</th>
-  <th>Offence</th>
-  <th>Age</th>
-  <th>BMI</th> 
-  <th>Eye Color</th>
-  <th>Unique Identification Mark</th>
-  <th>Judicial Status</th>
-  <th>Status After Crime</th>
-<th>Last known location</th>  
-</tr>
-</thead>
-<tbody>
-  
-  </thead>
+margin:0 auto;
+  display:flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color:black;
+  color:white;
+  flex-direction: column;
+  padding:10px;
+  box-shadow: 0px 5px 10px 0px #aaa;
+  transition-duration: .25s;
+  margin-top:3%;
+  border-radius:3%;
+    }
+    
+    .Total_content{
+     max-width: 2000px;
+  max-height:auto;
+  margin: 0 auto;
+  display:flex;
+margin-bottom:10px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+    
+    }
+    
+    
+    </style>
+<div class="Total_content">   
  
-  <tr>
+ 
    <% 
   try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -250,21 +250,34 @@ Address:-<%out.print(rs.getString("address"));%>
 	  {
 		  
   %>
+ <div class="container1">
+ <hr>
+ <hr>
+<a href="criminalview.jsp?value=<%=rs.getString("cid")%>" style="color:white;"> Name: <%out.print(rs.getString("criminal_name"));%></a>
+<br>
+<br>
+<p>Phone <%out.print(rs.getString("phone"));%><p>
+<br>
+<p>Arresting Officer <%out.print(rs.getString("arrested_by"));%></p> 
+<br>
+<p>Offences <%out.print(rs.getString("crime_committed"));%></p>
+<br>
+<p>Age <%out.print(rs.getString("age"));%></p> 
+<br>
+<p>BMI <%out.print(rs.getString("weight"));%></p> 
+<br>
+<p>Eye Color<%out.print(rs.getString("eyecolor"));%></p> 
+<br>
+<p>Body Marks <%out.print(rs.getString("uidm"));%></p> 
+<br>
+  <p>Status <%out.print(rs.getString("status_aftercrime"));%></p>
+  <br>
+<p>Trail <%out.print(rs.getString("judicial_status"));%></p>
+<br>
+<p>Last Known Location <%out.print(rs.getString("address"));%></p>
 
-<td><a href="criminalview.jsp?value=<%=rs.getString("cid")%>" style="color:black;"><%out.print(rs.getString("criminal_name"));%></a></td> 
-<td><%out.print(rs.getString("phone"));%></td>
-<td><%out.print(rs.getString("arrested_by"));%></td> 
-<td><%out.print(rs.getString("crime_committed"));%></td>
-<td><%out.print(rs.getString("age"));%></td> 
-<td><%out.print(rs.getString("weight"));%></td> 
-<td><%out.print(rs.getString("eyecolor"));%></td> 
-<td><%out.print(rs.getString("uidm"));%></td> 
-  <td><%out.print(rs.getString("status_aftercrime"));%></td>
-<td><%out.print(rs.getString("judicial_status"));%></td>
-<td><%out.print(rs.getString("address"));%></td>
 
-
-  </tr>
+  </div>
   <% }
 	 
    }
@@ -274,9 +287,8 @@ Address:-<%out.print(rs.getString("address"));%>
 	  e.printStackTrace();
   }
 	  %>
-</tbody>
-  </table>
 
+</div>
   </main><!-- End #main -->
 <br>
 <br>
@@ -319,4 +331,3 @@ Address:-<%out.print(rs.getString("address"));%>
     </body>
     
     </html>
-     

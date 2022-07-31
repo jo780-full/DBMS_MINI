@@ -57,6 +57,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -146,7 +147,7 @@ line-height: 25px;
 		  
 		 <p><strong>Complaint Records</strong>
        <br>
-       Name:-<%out.print(rs.getString("name"));%>
+        Name:-<a href="admin_complaintValidator.jsp?value=<%=rs.getString("comp_id")%>" style="color:black;"><%out.print(rs.getString("name"));%></a>
               <br>
   email:-<%out.print(rs.getString("email"));%>
   <br>
@@ -183,6 +184,9 @@ Date and Time:-<%out.print(rs.getString("locinc"));%></p>
   <th>Name of People</th>
   <th>reported</th>
   <th>comp_id</th>
+  <th>crime_id</th>
+  <th>response_id</th>
+ 
 
 </tr>
 </thead>
@@ -225,7 +229,7 @@ Date and Time:-<%out.print(rs.getString("locinc"));%></p>
   
   
   </style>
-  <td><%out.print(rs.getString("name"));%></td>
+  <td><a href="admin_complaintValidator.jsp?value=<%=rs.getString("comp_id")%>" style="color:black;"><%out.print(rs.getString("name"));%></a></td>
   <td><%out.print(rs.getString("email"));%></td>
 <td><%out.print(rs.getString("phone"));%></td> 
 <td><%out.print(rs.getString("message"));%></td> 
@@ -234,6 +238,8 @@ Date and Time:-<%out.print(rs.getString("locinc"));%></p>
 <td><%out.print(rs.getString("nameppl"));%></td>
 <td><%out.print(rs.getString("reported"));%></td>
 <td><%out.print(rs.getString("comp_id"));%></td>
+<td><%out.print(rs.getString("crime_id"));%></td>
+<td><%out.print(rs.getString("response_id"));%></td>
 
   </tr>
   <% }

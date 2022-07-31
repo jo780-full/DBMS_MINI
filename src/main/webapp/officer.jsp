@@ -57,6 +57,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -110,6 +111,7 @@ ResultSet rs;
 String name=request.getParameter("name");
 String email=request.getParameter("email");
 String phone=request.getParameter("phone");
+String pid=request.getParameter("pid");
 String msg=request.getParameter("designation");
 String noe=request.getParameter("dateofjoining");
 String dloc=request.getParameter("academy");
@@ -120,7 +122,7 @@ String rep2=request.getParameter("PASSWORD");
 try{
 	
 	//change name of db stored
-	psd=con.prepareStatement("insert into officer(name,email,phone,designation,date_of_joining,academy,station_name,station_ID,username,password) values(?,?,?,?,?,?,?,?,?,?)");
+	psd=con.prepareStatement("insert into officer(name,email,phone,designation,date_of_joining,academy,station_name,station_ID,username,password,pid) values(?,?,?,?,?,?,?,?,?,?,?)");
     psd.setString(1,name);
 	psd.setString(2,email);
 	psd.setString(3,phone);
@@ -131,6 +133,7 @@ try{
 	psd.setString(8,rep);
 	psd.setString(9,rep1);
 	psd.setString(10,rep2);
+	psd.setString(11,pid);
 	if(name!=null)
 	{
 	int x=psd.executeUpdate();

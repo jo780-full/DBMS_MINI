@@ -58,6 +58,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offlog.html">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -188,10 +189,11 @@ line-height: 25px;
 	con = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
     try{
  	  
-	String Query = request.getParameter("search");
-	String q="select * from admin where name in ('"+Query+"') or email in ('"+Query+"') or phone in ('"+Query+"') or username in ('"+Query+"') or adminID ('"+Query+"')";
-	psd=con.prepareStatement(q); 	   
-	   rs=psd.executeQuery();
+    	String Query = request.getParameter("search");
+    
+    	String q="select * from admin where name in ('"+Query+"') or email in ('"+Query+"') or phone in ('"+Query+"') or username in ('"+Query+"') or adminID in ('"+Query+"')";
+    	psd=con.prepareStatement(q); 	   
+    	   rs=psd.executeQuery();
 	   while(rs.next())
 	   {
 		   %>

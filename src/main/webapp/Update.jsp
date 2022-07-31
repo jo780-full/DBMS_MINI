@@ -57,6 +57,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -210,7 +211,7 @@ AdminID:-<%out.print(rs.getString("adminID"));%>
               </div>
 
               <div class="col-md-12 ">
-                <input type="email" class="form-control" name="email1" placeholder="Email" required>
+                <input type="text" class="form-control" name="email1" placeholder="Email" required>
               </div>
               <br>
               <div class="col-md-12">

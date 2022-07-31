@@ -85,7 +85,7 @@
       <nav>
         <div class="container">
           <ol>
-            <li><a href="category.jsp">Back</a></li>
+            <li><a href="view_complaints.jsp">Back</a></li>
             
           </ol>
         </div>
@@ -138,7 +138,7 @@ margin-bottom:10px;
 		String q=request.getParameter("value");
 		
 		
-		PreparedStatement psd=con.prepareStatement("select name,message,locinc,reported from complaint left join crimecategory on crimecategory.crime_id=complaint.crime_id where crimecategory.crime_committed in ('"+q+"')");
+		PreparedStatement psd=con.prepareStatement("select * from complaint where comp_id in ('"+q+"')");
 		
 		ResultSet rs=psd.executeQuery();
 		
@@ -151,12 +151,57 @@ margin-bottom:10px;
 		<hr>
 			   <p><strong>Name of person who Complained:</strong> <%out.print(rs.getString("name"));%></p>
 			   <hr>
-			   <p><strong>Message:</strong> <%out.print(rs.getString("message"));%></p>
+			   <p><strong>Email:</strong> <%out.print(rs.getString("email"));%></p>
 			   <hr>
-			   <p><strong>Victim Reported:</strong> <%out.print(rs.getString("reported"));%></p>
+			   <p><strong>Phone:</strong> <%out.print(rs.getString("phone"));%></p>
 			   <hr>
-			    <p><strong>Date of  Report:</strong> <%out.print(rs.getString("locinc"));%></p>
+			    <p><strong>Message:</strong> <%out.print(rs.getString("message"));%></p>
 			   <hr>
+			    <p><strong>Name of Employeer:</strong> <%out.print(rs.getString("nameofemployee"));%></p>
+			   <hr>
+			   <p><strong>Date of  Report:</strong> <%out.print(rs.getString("locinc"));%></p>
+			   <hr>
+			   <p><strong>Fir Filed Against:</strong> <%out.print(rs.getString("nameppl"));%></p>
+			   <hr>
+			   <p><strong>Reported:</strong> <%out.print(rs.getString("reported"));%></p>
+			   <hr>
+			   <p><strong>Complaint ID Number:</strong> <%out.print(rs.getString("comp_id"));%></p>
+			   <hr>
+			   <p><strong>Crime Category:</strong> <%out.print(rs.getString("crime_id"));%></p>
+			   <hr>
+			    <p><strong>Response Id:</strong> <%out.print(rs.getString("response_id"));%></p>
+			   <hr>
+			   <% if(rs.getString("crime_id")==null)
+			   {
+			   %>
+			   <p>Confirm Fir To Validate</p>
+			   <form method="post"> 
+			   <input type="text" name="crime_ids" placeholder="Enter CrimeID to Validate">
+			   <br>
+			   <br>
+			   <input type="submit" style="background-color:white;width:auto;" value="Confirm">
+			    <hr style="color:white;">
+	
+			   
+			   </form>
+			  
+			   <%
+			   try{
+			   String getsd=request.getParameter("crime_ids");
+			   psd=con.prepareStatement("update complaint set crime_id='"+getsd+"' where comp_id like ('"+q+"')");
+			   psd.executeUpdate();
+			   %>
+			    <jsp:forward page="admin_complaintValidator.jsp"/>
+			   <% 
+			   }
+			   catch(Exception e){
+				   e.printStackTrace();
+			   }
+			   }
+			   
+			   
+			   %>
+			   <button style="background-color:white; color:black; position:relative;display:flex; width:100%;"><a href="Deletor.jsp?value=<%=rs.getString("comp_id")%>" style="color:red;text-align: center; vertical-align: middle;">Caution on Deleting the  FIR ... It Can't be Reverted!!!</a></button>
 			     </div>
   
 		

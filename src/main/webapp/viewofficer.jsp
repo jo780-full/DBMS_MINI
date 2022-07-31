@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.sql.*" %>
+    pageEncoding="ISO-8859-1" import="java.sql.*"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>View Officers  Here</title>
+  <title>View Criminal Here</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -57,6 +58,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -66,7 +68,6 @@
 </header><!-- End Header -->
 <!-- End Header -->
 
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -75,9 +76,9 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>View Officers</h2>
-              <p>They will help and guide you</p>
-              <form id="formb">
+              <h2>Check for  all criminals here</h2>
+              <p>Click on their names to get a detailed description</p>
+                <form id="formb">
     <input id="search" type="text" name="search" placeholder="Search Query here....">
     
     </form>
@@ -109,9 +110,8 @@
     resize: none;
     outline: none;
     }
-    
-    P{
-    text-align: center;
+    p{
+     text-align: center;
 line-height: 25px;
     
     }
@@ -126,22 +126,7 @@ line-height: 25px;
       </nav>
     </div><!-- End Breadcrumbs -->
     <br>
-  <style>
-  th{
-  border:1px solid black;
-  padding:10dp;
-  text-align:centre;
-  
-  }
-  td{
-  border:1px solid black;
-  padding:10dp;
-  text-align:centre;
-  
-  }
-  
-  
-  </style>
+    
   <%
  Connection con;
  PreparedStatement psd;
@@ -180,10 +165,16 @@ Station ID:-<%out.print(rs.getString("station_ID"));%>
 
 </p>
 
+
 		   
 		   
 		   
-	   <% }
+	   <% 
+	   }
+	   
+	 
+	   
+	   
     }
     catch(Exception e)
     {
@@ -193,29 +184,49 @@ Station ID:-<%out.print(rs.getString("station_ID"));%>
     
     
     %>
-  <table style="margin-left:auto;margin-right:auto;">
+    
+    
+ <style> 
+    
+      
+    
+    .container1{
+    
+  width:30%;
+  height:auto;
+  background-color:white;
 
+margin:0 auto;
+  display:flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color:black;
+  color:white;
+  flex-direction: column;
+  padding:10px;
+  box-shadow: 0px 5px 10px 0px #aaa;
+  transition-duration: .25s;
+  margin-top:3%;
+  border-radius:3%;
+    }
+    
+    .Total_content{
+     max-width: 2000px;
+  max-height:auto;
+  margin: 0 auto;
+  display:flex;
+margin-bottom:10px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+    
+    }
+    
+    
+    </style>
+<div class="Total_content">   
  
-,<thead style="margin-left:auto;margin-right:auto;">
-    <tr style="border:2px solid;text-align:center;">
  
-  <th>Name</th>
-  <th>Email</th>
-  <th>Phone</th>
-  <th>Designation</th>
-  <th>Date of Joining</th>
-  <th>Academy</th> 
-  <th>Station Name</th>
-  <th>Station ID</th>
-
- 
-</tr>
-</thead>
-<tbody>
-  
-  </thead>
- 
-  <tr>
    <% 
   try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -225,32 +236,38 @@ Station ID:-<%out.print(rs.getString("station_ID"));%>
 		Statement statement=connection.createStatement();
 
 	  String sql="select  * from officer";
-	  rs=statement.executeQuery(sql);
+	rs=statement.executeQuery(sql);
+	
 	  while(rs.next())
 	  {
 		  
   %>
-  <td><a href="ViewSingleOfficer.jsp?value=<%=rs.getString("pid")%>" style="color:black;"><%out.print(rs.getString("name"));%></a></td>
-  <td><%out.print(rs.getString("email"));%></td>
-<td><%out.print(rs.getString("phone"));%></td> 
-<td><%out.print(rs.getString("designation"));%></td>
-<td><%out.print(rs.getString("date_of_joining"));%></td> 
-<td><%out.print(rs.getString("academy"));%></td>
-<td><%out.print(rs.getString("station_name"));%></td>
-<td><%out.print(rs.getString("station_ID"));%></td>
+ <div class="container1">
+ <hr>
+ <hr>
+<a href="ViewSingleOfficer.jsp?value=<%=rs.getString("pid")%>" style="color:white;">Name: <%out.print(rs.getString("name"));%></a>
+  <p>Email:  <%out.print(rs.getString("email"));%></p>
+<p>Phone:  <%out.print(rs.getString("phone"));%></p> 
+<p>Designation:  <%out.print(rs.getString("designation"));%></p>
+<p> Date of Joining: <%out.print(rs.getString("date_of_joining"));%></p> 
+<p>Academy: <%out.print(rs.getString("academy"));%></p>
+<p>Station Name: <%out.print(rs.getString("station_name"));%></p>
+<p> Station ID: <%out.print(rs.getString("station_ID"));%></p>
 
 
-  </tr>
+
+  </div>
   <% }
-	  }
+	 
+   }
+   
   catch(Exception e)
   {
 	  e.printStackTrace();
   }
 	  %>
-</tbody>
-  </table>
 
+</div>
   </main><!-- End #main -->
 <br>
 <br>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.sql.*"%>
-
+    pageEncoding="ISO-8859-1" import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Delete Criminal</title>
+  <title>View Officers  Here</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -57,8 +56,8 @@
         <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="admin.html">Admin</a></li>
-            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -68,22 +67,7 @@
 </header><!-- End Header -->
 <!-- End Header -->
 
-<style>
-  th{
-  border:1px solid black;
-  padding:10dp;
-  text-align:centre;
-  
-  }
-  td{
-  border:1px solid black;
-  padding:10dp;
-  text-align:centre;
-  
-  }
-  
-  
-  </style>
+
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -92,9 +76,8 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Delete Criminals Page</h2>
-              <p>Guilty Until Proven innocent....</p>
-              
+              <h2>View Officers</h2>
+              <p>They will help and guide you</p>
               <form id="formb">
     <input id="search" type="text" name="search" placeholder="Search Query here....">
     
@@ -136,60 +119,69 @@ line-height: 25px;
    
     </style>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>
-             <%
+          </div>
+        </div>
+      </div>
+      <nav>
+        
+      </nav>
+    </div><!-- End Breadcrumbs -->
+    <br>
+  <style>
+  th{
+  border:1px solid black;
+  padding:10dp;
+  text-align:centre;
+  
+  }
+  td{
+  border:1px solid black;
+  padding:10dp;
+  text-align:centre;
+  
+  }
+  
+  
+  </style>
+  <%
  Connection con;
  PreparedStatement psd;
  ResultSet rs;
- Class.forName("com.mysql.cj.jdbc.Driver");
-	con = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+   
     try{
- 	  
-    	  
+ 	   Class.forName("com.mysql.cj.jdbc.Driver");
+		con = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+	String Query = request.getParameter("search");
+	String q="select * from officer where name in ('"+Query+"') or email in ('"+Query+"') or phone in ('"+Query+"') or designation in ('"+Query+"') or date_of_joining in ('"+Query+"')or academy in ('"+Query+"') or station_name in ('"+Query+"') or station_id in ('"+Query+"') or pid in ('"+Query+"')";
+	psd=con.prepareStatement(q); 	   
+	   rs=psd.executeQuery();
+	   while(rs.next())
+	   {
+		   %>
+		  
+		 <p><strong>Officers Records</strong>
+       <br>
+       Name:-<%out.print(rs.getString("name"));%>
+              <br>
+  email:-<%out.print(rs.getString("email"));%>
+  <br>
+phone:-<%out.print(rs.getString("phone"));%>
+<br> 
+designation:-<%out.print(rs.getString("designation"));%>
+<br>
+Date and Time:-<%out.print(rs.getString("date_of_joining"));%>
+<br>
+Academy:-<%out.print(rs.getString("academy"));%>
+<br>
+Station Name:-<%out.print(rs.getString("station_name"));%>
+<br>
+Station ID:-<%out.print(rs.getString("station_ID"));%>
+<br>
 
-    	 	String Query = request.getParameter("search");
-    	 	String q="select * from criminals where criminal_name in ('"+Query+"') or phone in ('"+Query+"') or cid in ('"+Query+"') or phone in ('"+Query+"') or arrested_by in ('"+Query+"')or crime_committed in ('"+Query+"') or age in ('"+Query+"') or weight in ('"+Query+"') or eyecolor in ('"+Query+"') or uidm in ('"+Query+"') or status_aftercrime in ('"+Query+"') or judicial_status in ('"+Query+"') or address in ('"+Query+"') or comp_id in ('"+Query+"') or pid in ('"+Query+"')";
-    	 	psd=con.prepareStatement(q); 	   
-    	 	   rs=psd.executeQuery();
-    	 	   while(rs.next())
-    	 	   {
-    	 		   %>
-    	 		  
-    	 		 <p><strong>Criminal Records</strong>
-    	        <br>
-    	        Name:-<%out.print(rs.getString("criminal_name"));%>
-    	               <br>
-    	   Criminal id:-<%out.print(rs.getString("cid"));%>
-    	   <br>
-    	 phone:-<%out.print(rs.getString("phone"));%>
-    	 <br> 
-    	 crime committed:-<%out.print(rs.getString("crime_committed"));%>
-    	 <br>
-    	 Arrested By:-<%out.print(rs.getString("arrested_by"));%>
-    	 <br>
-    	 Age:-<%out.print(rs.getString("age"));%>
-    	 <br>
-    	 Weight:-<%out.print(rs.getString("weight"));%>
-    	 <br>
-    	 Eye color:-<%out.print(rs.getString("eyecolor"));%>
-    	 <br>
 
-    	 Unique Identification:-<%out.print(rs.getString("uidm"));%>
-    	 <br>
-    	 Status AfterCrime:-<%out.print(rs.getString("status_aftercrime"));%>
-    	 <br>
-    	 Judicial Status:-<%out.print(rs.getString("judicial_status"));%>
-    	 <br>
-    	 Address:-<%out.print(rs.getString("address"));%>
-    	 <br>
-    	 PID:-<%out.print(rs.getString("pid"));%>
+</p>
 
-    	 </p>
-
-    	 	 
+		   
 		   
 		   
 	   <% }
@@ -202,87 +194,68 @@ line-height: 25px;
     
     
     %>
-            <form data-aos="fade-up" style="margin-left:auto;margin-right:auto;">
-            <br>
-            <h3>Enter the Criminal Id to be Removed:</h3>
-            <br>
-            <input style="width:400px;height:65px;border-radius:10px" type="text" name="cids" placeholder="Enter the Criminal id here">
-            <br>
-            <input type="submit" class="buttoncd" value="Delete"/>
-            </form> 
-   
-   
-  </main><!-- End #main -->
-<br>
-<style>
-.buttonholder{
-display: flex;
-justify-content: center;
-}
-.buttoncd{
-background-color:var(--color-secondary);
-color:white;
-margin-top:10px;
-margin-right:30px;
-margin-left:25px;
-border-radius:20px;
-padding: 33px 20px;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.buttoncd span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
+  <table style="margin-left:auto;margin-right:auto;">
 
-.buttoncd span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.buttoncd:hover span {
-  padding-right: 25px;
-}
-
-.buttoncd:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-
-</style>  
+ 
+,<thead style="margin-left:auto;margin-right:auto;">
+    <tr style="border:2px solid;text-align:center;">
+ 
+  <th>Name</th>
+  <th>Email</th>
+  <th>Phone</th>
+  <th>Designation</th>
+  <th>Date of Joining</th>
+  <th>Academy</th> 
+  <th>Station Name</th>
+  <th>Station ID</th>
+<th>Police ID</th>
+ <th>Username</th>
+ <th>Password</th>
+</tr>
+</thead>
+<tbody>
   
-<%
-try{
-Statement st=con.createStatement();
-String Query = request.getParameter("cids");
-String q="delete from criminals where cid="+Query+"";
-int i=st.executeUpdate(q);
-if(i>0)  
-{
-	   %>
-	    <script>alert("data altered successfully!!")</script>
-	
-	   <%
-}
-	   else if(i<0)
-	   {
-		   %>
-		  <script>alert("The given Criminal with id given does not exist")</script>
-		   <%
-	   }
-}
-catch(Exception e)
-    {
-	e.printStackTrace();
-    }
+  </thead>
+ 
+  <tr>
+   <% 
+  try{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		//change name of db stored
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+		
+		Statement statement=connection.createStatement();
 
-%>
+	  String sql="select  * from officer";
+	  rs=statement.executeQuery(sql);
+	  while(rs.next())
+	  {
+		  
+  %>
+  <td><a href="ViewSingleOfficer.jsp?value=<%=rs.getString("pid")%>" style="color:black;"><%out.print(rs.getString("name"));%></a></td>
+  <td><%out.print(rs.getString("email"));%></td>
+<td><%out.print(rs.getString("phone"));%></td> 
+<td><%out.print(rs.getString("designation"));%></td>
+<td><%out.print(rs.getString("date_of_joining"));%></td> 
+<td><%out.print(rs.getString("academy"));%></td>
+<td><%out.print(rs.getString("station_name"));%></td>
+<td><%out.print(rs.getString("station_ID"));%></td>
+<td><%out.print(rs.getString("pid"));%></td>
+<td><%out.print(rs.getString("username"));%></td>
+<td><%out.print(rs.getString("password"));%></td>
+
+
+  </tr>
+  <% }
+	  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+	  %>
+</tbody>
+  </table>
+
   </main><!-- End #main -->
 <br>
 <br>
@@ -325,3 +298,4 @@ catch(Exception e)
     </body>
     
     </html>
+

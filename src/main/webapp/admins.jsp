@@ -57,6 +57,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -122,7 +123,7 @@ while(rs.next())
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
               <h2>Manage Admin</h2>
-              <p>Solely Incharge</p>
+              
             </div>
           </div>
         </div>
@@ -134,6 +135,9 @@ while(rs.next())
             <li><a href="#">Admin</a>
             <li><a href="officer.jsp">Officers</a></li>
             <li><a href="criminals.jsp">Criminals</a></li>
+            <li><a href="view_complaints.jsp">Complaint</a></li>
+            <li><a href="regularOfficerView.jsp"> View Detailed Officers</a></li>
+            <li><a href="RegularCriminalView.jsp">View Detailed Criminals</a></li>
           </ol>
         </div>
       </nav>

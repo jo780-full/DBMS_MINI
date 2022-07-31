@@ -57,6 +57,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -82,7 +83,7 @@
       <nav>
         <div class="container">
           <ol>
-            <li><a href="view_criminal.jsp">Back</a></li>
+           
             
           </ol>
         </div>

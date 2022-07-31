@@ -57,6 +57,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -76,7 +77,28 @@
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
               <h2>Manage Criminals</h2>
-              <p>manage Criminals</p>
+             <%
+             String q=request.getParameter("username");
+             Class.forName("com.mysql.cj.jdbc.Driver");
+         	//change name of db stored
+         	Connection con = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+         	try
+         	{
+         	PreparedStatement psd1=con.prepareStatement("select * from officer where username='"+q+"'");
+             ResultSet rs=psd1.executeQuery();
+            if(rs.next())
+            {
+            	%>
+            	<p>Welcome Officer <%out.print(rs.getString("name")); %> with Id Number <%out.print(rs.getString("pid")); %></p>
+            	<% 
+            }
+         	}
+         	catch(Exception e)
+         	{
+         		e.printStackTrace();
+         	}
+            
+             %>
             </div>
           </div>
         </div>
@@ -112,9 +134,7 @@ String add=request.getParameter("add");
 String pid=request.getParameter("pid");
 
 try{
-	Class.forName("com.mysql.cj.jdbc.Driver");
-	//change name of db stored
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost/criminal","root","password");
+	
 	PreparedStatement psd=con.prepareStatement("insert into criminals(criminal_name,cid,phone,arrested_by,crime_committed,age,weight,eyecolor,uidm,status_aftercrime,judicial_status,address,pid,crime_id,comp_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
     psd.setString(1,name);
 	psd.setString(2,email);

@@ -58,6 +58,7 @@
           <ul>
             <li><a href="admin.html">Admin</a></li>
             <li><a href="offloging.jsp">Officer</a></li>
+            <li><a href="CrimeCategory.jsp">Crime Type</a></li>
             </ul>
         <li><a href="report.jsp">Complaint</a></li>
      
@@ -246,8 +247,8 @@ PID:-<%out.print(rs.getString("pid"));%>
 <%
 try{
 Statement st=con.createStatement();
-String Query = request.getParameter("pids");
-String q="delete  from officer where pid="+Query+"";
+String Query = request.getParameter("cids");
+String q="delete  from officer where pid="+Query;
 int i=st.executeUpdate(q);
 if(i>0)  
 {
