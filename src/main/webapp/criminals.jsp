@@ -178,7 +178,7 @@ catch(Exception e)
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;">
-<a href="UpdateCriminal.jsp"><button name="update Criminals"  class="buttoncd"/><span>Update Criminals Database</span></button></a>
+<a href="DeleteCriminal.jsp"><button  name="delete Criminals" class="buttoncd"/><span>Delete Criminal Logs</span></button></a> 
 </div>
 <div style=" position: relative;
   width: 100%;
@@ -186,7 +186,16 @@ catch(Exception e)
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;">
-<a href="DeleteCriminal.jsp"><button  name="delete Criminals" class="buttoncd"/><span>Delete Criminal Logs</span></button></a> 
+<a href="UpdateCriminal.jsp"><button name="update Criminals"  class="buttoncd"/><span>Update Criminals Database</span></button></a>
+</div>
+
+<div style=" position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;">
+<a href="crimeimage.jsp"><button  name="delete Criminals" class="buttoncd"/><span>Insert Criminals  Images into Database</span></button></a> 
 </div>
 </div>
    

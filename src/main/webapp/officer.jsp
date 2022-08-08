@@ -153,7 +153,7 @@ catch(Exception e)
 <a href="officer_form.html"><button  name="Add Officers"  class="buttoncd"/><span>Add Officers</span></button></a>
 <a href="UpdateOfficer.jsp"><button name="UPDate Officers"  class="buttoncd"/><span>Update Officers Database</span></button></a>
 <a href="Deleteofficer.jsp"><button  name="delete officers" class="buttoncd"/><span>Delete Officer Logs</span></button></a> 
-
+<a href="OfficerInsert.jsp"><button  name="delete officers" class="buttoncd"/><span>Insert Officer Images</span></button></a> 
 </div>
    
   </main><!-- End #main -->

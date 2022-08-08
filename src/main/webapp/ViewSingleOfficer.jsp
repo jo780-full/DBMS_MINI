@@ -137,7 +137,7 @@ PreparedStatement psd=con.prepareStatement("select * from officer where pid="+q)
 		   {
 			   %>
 			   
-			   
+			   <img  class="criminalphoto" src="image_folder/<%=rs.getString("image_loc")%>" alt="Not Found" onerror=null;this.src='image_folder/user_image.jpg'>
 			   <br>
 			    <div class="Total_content">
 			       Name:<%out.print(rs.getString("name"));%>

@@ -138,7 +138,7 @@ PreparedStatement psd=con.prepareStatement("select * from criminals right join c
 		   {
 			   %>
 			   
-			   <img  class="criminalphoto"src="criminal_images/blade_manja.jpg">
+			   <img  class="criminalphoto"src="image_folder/<%=rs.getString("image_loc")%>" alt="Not Found" onerror=null;this.src='image_folder/user_image.jpg'>
 			   <br>
 			    <div class="Total_content">
 			       Name:<%out.print(rs.getString("criminal_name"));%>
